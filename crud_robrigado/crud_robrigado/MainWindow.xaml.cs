@@ -21,50 +21,46 @@ namespace crud_robrigado
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Employees> Employee {  get; }
-        public class Employees
-        { 
-            public int Id {  get; set; }
-            public string Name {  get; set; }
-            public string Title {  get; set; }
-            public string Department {  get; set; }
-            public decimal Salary {  get; set; }
-    }
+        public List<Items> Item{ get; }
+        public class Items
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public decimal Price { get; set; }
+
+        }
         public MainWindow()
         {
             InitializeComponent();
 
-            Employee = new List<Employees>
+            Item = new List<Items>
 {
-        new Employees { Id = 1, Name = "John Doe", Title = "Software Engineer", Department = "IT", Salary = 60000 },
-        new Employees { Id = 2, Name = "Jane Smith", Title = "Project Manager", Department = "IT", Salary = 75000 },
-        new Employees { Id = 3, Name = "Emily Davis", Title = "HR Specialist", Department = "HR", Salary = 50000 }
+        new Items { Id = 1, Name = "Laptop", Description = "A high-performance laptop", Price = 40000 },
+        new Items { Id = 2, Name = "Smartphone", Description = "A sleek smartphone with wide storage", Price = 7000 },
+        new Items{ Id = 3, Name = "Desktop", Description = "An advanced desktop with high-power GPU",  Price = 50000 }
 };
             this.DataContext = this;
-
         }
-
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void AddItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (NameUser.Text != " " && TitleUser.Text != " " && DeptUser.Text != " " && SalaryUser.Text != " ")
+                if (NameAdd.Text != " " && DescAdd.Text != " " && PriceAdd.Text != " " && IdAdd.Text != " ")
                 {
-                    Employee.Add(new Employees
+                    Item.Add(new Items
                     {
-                        Id = int.Parse(IdUser.Text),
-                        Name = NameUser.Text,
-                        Title = TitleUser.Text,
-                        Department = DeptUser.Text,
-                        Salary = decimal.Parse(SalaryUser.Text)
+                        Id = int.Parse(IdAdd.Text),
+                        Name = NameAdd.Text,
+                        Description = DescAdd.Text,
+                        Price = decimal.Parse(PriceAdd.Text)
                     });
-                    employeez.Items.Refresh();
+                    itemz.Items.Refresh();
 
-                    IdUser.Text = " ";
-                    NameUser.Text = " ";
-                    TitleUser.Text = " ";
-                    DeptUser.Text = " ";
-                    SalaryUser.Text = " ";
+                    IdAdd.Text = " ";
+                    NameAdd.Text = " ";
+                    DescAdd.Text = " ";
+                    PriceAdd.Text = " ";
                 }
             }
 
@@ -76,40 +72,51 @@ namespace crud_robrigado
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            Employees selectedEmployee = employeez.SelectedItem as Employees;
-            if (selectedEmployee != null)
+            Items selectedItem = itemz.SelectedItem as Items;
+            if (selectedItem != null)
             {
-                Employee.Remove(selectedEmployee);
-                employeez.Items.Refresh();
-                MessageBox.Show("Employee removed successfully.");
+                Item.Remove(selectedItem);
+                itemz.Items.Refresh();
+                MessageBox.Show("An item was removed successfully.");
             }
             else
             {
-                MessageBox.Show("Please select an employee to remove.");
+                MessageBox.Show("Please select an item to remove.");
             }
-        }
-
-        private void Update_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            IdUser.Text = " ";
-            NameUser.Text = " ";
-            TitleUser.Text = " ";
-            DeptUser.Text = " ";
-            SalaryUser.Text = " ";
-
+            IdAdd.Text = " ";
+            NameAdd.Text = " ";
+            DescAdd.Text = " ";
+            PriceAdd.Text = " ";
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
- 
-           
-        }
-
         
+        private void AddCart_Click(object sender, RoutedEventArgs e)
+        {
+
+            Items selectItem = dataGrid.SelectedItem as Items;
+            if (selectItem != null)
+            {
+                selectItem.Id = int.Parse(IdAdd.Text);
+                selectItem.Name = NameAdd.Text;
+                selectItem.Description = DescAdd.Text;
+                selectItem.Price = decimal.Parse(PriceAdd.Text);
+
+
+                dataGrid.Items.Refresh();
+                MessageBox.Show("Item added successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Please click a field.");
+            }
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
-}
+    }

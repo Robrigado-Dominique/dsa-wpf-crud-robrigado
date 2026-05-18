@@ -8,38 +8,54 @@
         Title="MainWindow" Height="446" Width="798"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="employeez" ItemsSource="{Binding Employee}" AutoGenerateColumns="False"  Margin="29,70,29,76" BorderBrush="#FFABB6C1" FontWeight="Bold" Background="#FFFFEBEB">
+        <DataGrid x:Name="itemz" ItemsSource="{Binding Item}" AutoGenerateColumns="False"  Margin="29,57,29,235" BorderBrush="#FFABB6C1" FontWeight="Bold" Background="#FFFFEBEB">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="70"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="120"/>
-                <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="*"/>
-                <DataGridTextColumn Header="Salary" Binding="{Binding Salary}" Width="110"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description }" Width="220"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <TextBlock HorizontalAlignment="Center" Margin="0,34,0,0" TextWrapping="Wrap" Text="Employees" VerticalAlignment="Top" FontFamily="Gigi" FontWeight="Bold" FontSize="20"/>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,11,0,0" TextWrapping="Wrap" Text="Shopping Cart System" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold" FontWeight="Bold" FontSize="18"/>
         <Rectangle HorizontalAlignment="Center" Height="55" Margin="0,365,0,0" Stroke="#FFA5A1A1" VerticalAlignment="Top" Width="742" RenderTransformOrigin="0.5,0.5" Fill="#FFFFF2F2">
         </Rectangle>
-        <TextBox Name="IdUser" HorizontalAlignment="Left" Margin="38,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39" />
-        <TextBox Name="NameUser" HorizontalAlignment="Left" Margin="90,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" />
-        <TextBox Name="TitleUser" HorizontalAlignment="Left" Margin="190,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
-        <TextBox Name="DeptUser" HorizontalAlignment="Left" Margin="283,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="99" />
-        <TextBox Name="SalaryUser" HorizontalAlignment="Left" Margin="397,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" />
+        <TextBox Name="IdItem" HorizontalAlignment="Left" Margin="53,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39" />
+        <TextBox Name="NameItem" HorizontalAlignment="Left" Margin="106,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" />
+        <TextBox Name="DescItem" HorizontalAlignment="Left" Margin="210,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125"/>
+        <TextBox Name="PriceItem" HorizontalAlignment="Left" Margin="350,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" />
 
-        <Button Content="Add" HorizontalAlignment="Left" Margin="502,391,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Add_Click">
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding dataGrid}" Margin="29,218,29,80" FontWeight="Bold" Background="#FFFFEDED" SelectionChanged="dataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="70"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="220"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,11,0,0" TextWrapping="Wrap" Text="Shopping Cart System" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold" FontWeight="Bold" FontSize="18"/>
+        <TextBox Name="IdAdd" HorizontalAlignment="Left" Margin="53,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39" />
+        <TextBox Name="NameAdd" HorizontalAlignment="Left" Margin="106,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" />
+        <TextBox Name="DescAdd" HorizontalAlignment="Left" Margin="210,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125"/>
+        <TextBox Name="PriceAdd" HorizontalAlignment="Left" Margin="350,391,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" />
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,201,0,0" TextWrapping="Wrap" Text="Shopping Cart" VerticalAlignment="Top" FontSize="11" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,39,0,0" TextWrapping="Wrap" Text="Available Items" VerticalAlignment="Top" FontWeight="Bold" FontSize="11"/>
+
+        <Button Content="Add Item" HorizontalAlignment="Left" Margin="537,391,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="AddItem_Click">
         </Button>
-        <TextBox HorizontalAlignment="Left" Margin="37,374,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
-        <TextBox HorizontalAlignment="Left" Margin="89,375,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
-        <TextBox HorizontalAlignment="Left" Margin="188,375,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
-        <TextBox HorizontalAlignment="Left" Margin="281,374,0,0" TextWrapping="Wrap" Text="Department" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
-        <TextBox HorizontalAlignment="Left" Margin="396,375,0,41" TextWrapping="Wrap" Text="Salary" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
-        <Button Content="Remove" HorizontalAlignment="Left" Margin="567,391,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Remove_Click">
+        <TextBox HorizontalAlignment="Left" Margin="52,374,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Margin="103,375,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Margin="207,375,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
+        <TextBox HorizontalAlignment="Left" Margin="350,376,0,40" TextWrapping="Wrap" Text="Price" Width="80" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Display Semibold" FontSize="10" Background="{x:Null}"/>
+        <Button Content="Remove Item" HorizontalAlignment="Left" Margin="606,391,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Remove_Click">
         </Button>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="640,391,0,0" VerticalAlignment="Top" Width="59" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Update_Click">
+        <Button Content="Add to Cart" HorizontalAlignment="Left" Margin="688,391,0,0" VerticalAlignment="Top" Width="59" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="AddCart_Click" Command="{Binding BindsDirectlyToSource=True, ElementName=dataGrid, Mode=OneWay}">
         </Button>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Clear_Click">
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="478,391,0,0" VerticalAlignment="Top" Width="45" RenderTransformOrigin="0.5,0.5" FontSize="10" Click="Clear_Click">
         </Button>
+
 
     </Grid>
 </Window>
